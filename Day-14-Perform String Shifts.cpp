@@ -26,3 +26,54 @@ Explanation:
 [0,2] means shift to left by 2. "fgabcde" -> "abcdefg"
 [1,3] means shift to right by 3. "abcdefg" -> "efgabcd"
  */
+class Solution {
+public:
+    string stringShift(string s, vector<vector<int>>& a) {
+        int i,j,k,n;
+        for(i=0;i<a.size();i++)
+        {
+          n=(a[i][1])%s.size();
+            if(n>0)
+            {
+            char c[n];
+            if(a[i][0]==0)
+            {
+                for(j=0;j<n;j++)
+                {
+                    c[j]=s[j];
+                }
+                for(j=n;j<s.size();j++)
+                {
+                    s[j-n]=s[j];
+                }
+                k=0;
+                for(j=s.size()-n;j<s.size();j++)
+                {
+                    s[j]=c[k++];
+                }
+                //cout<<s<<endl;
+            }
+            else
+            {
+                k=0;
+               for(j=s.size()-n;j<s.size();j++)
+               {
+                   c[k++]=s[j];
+               }
+                for(j=s.size()-n;j>=0;j--)
+                {
+                    s[j+n]=s[j];
+                }
+                for(j=0;j<n;j++)
+                    s[j]=c[j];
+                //cout<<s<<endl;
+            }
+            }
+        }
+        //cout<<s<<endl;
+        string p="";
+        for(i=0;i<s.size();i++)
+            p+=s[i];
+        return p;
+    }
+};
